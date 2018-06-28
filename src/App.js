@@ -11,6 +11,7 @@ import raluca from './images/raluca.png';
 import craig from './images/craig.png';
 import shane from './images/shane.png';
 import rik from './images/rik.png';
+import ian from './images/ian.png';
 import questionMark from './images/questionMark.gif';
 
 const namesMapper = { 
@@ -21,7 +22,8 @@ const namesMapper = {
 	'raluca': raluca,
 	'craig': craig,
 	'shane': shane,
-	'rik': rik
+	'rik': rik,
+	'ian': ian
 };
 
 
