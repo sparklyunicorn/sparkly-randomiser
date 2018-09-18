@@ -46,7 +46,6 @@
 }
 
 button {
-  margin-top: 30px;
   width: 200px;
   height: 200px;
   cursor: pointer;
@@ -55,4 +54,8 @@ button {
   background-color: transparent;
   border: none;
   outline: none;
+}
+
+.naughty-word {
+  background: #E2B633;
 }

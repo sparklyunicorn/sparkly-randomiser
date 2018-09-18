@@ -2,16 +2,15 @@ import React, { Component } from 'react';
 // import easing from 'easing-functions';
 import Slot from './Slot.jsx';
 import queryString from 'query-string';
+import urbanDictionaryService from './services/urbanDictionaryService';
 
 import './App.css';
 import alex from './images/alex.png';
 import rob from './images/rob.png';
 import jiten from './images/jiten.png';
 import raluca from './images/raluca.png';
-import craig from './images/craig.png';
-import shane from './images/shane.png';
+import joe from './images/joe.png';
 import rik from './images/rik.png';
-import ian from './images/ian.png';
 import questionMark from './images/questionMark.gif';
 
 const namesMapper = { 
@@ -20,12 +19,9 @@ const namesMapper = {
 	'rob': rob,
 	'jiten': jiten,
 	'raluca': raluca,
-	'craig': craig,
-	'shane': shane,
-	'rik': rik,
-	'ian': ian
+	'joe': joe,
+	'rik': rik
 };
-
 
 class App extends Component {
 	constructor() {
@@ -37,7 +33,8 @@ class App extends Component {
 		this.state = {
 			names: this.nameArray.concat(this.nameArray).concat(this.nameArray).concat(this.nameArray).concat(this.nameArray).concat(this.nameArray).concat(this.nameArray).concat(this.nameArray),
 			person: 0,
-			times: 0
+			times: 0,
+			result: {}
 		}
 
 		this.onClick = this.onClick.bind(this);
@@ -45,10 +42,15 @@ class App extends Component {
 
 	onClick() {
 		const index =	Math.floor(Math.random() * (this.nameArray.length));
-		console.log(index);
-		this.setState ({ 
-			person: index + 1
+		urbanDictionaryService()
+			.then(result => {
+				this.setState ({ 
+					person: index + 1,
+					result
+				})
 		})
+
+		console.log(index);
 	}
 	
 	render() {
@@ -101,6 +103,11 @@ class App extends Component {
 				</Slot>
 			</div>
 			<button onClick={this.onClick}></button>
+			<div className="naughty-word">
+				<b>{ this.state.result.word }</b>
+				<p>{ this.state.result.definition }</p>
+				{ this.state.result.example }
+			</div>
 			</div >
 		);
 	}
